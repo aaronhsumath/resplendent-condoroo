@@ -1,3 +1,24 @@
+# Load data
+load("webdata.data.RData")
+
+## Hard-coded
+nSheets = 12  # number of sheets (cities)
+nTypes = 3  # number of types of buildings
+nStats = 3  # number of stats to read
+nYears = 13 # number of rows (years) to read
+cityNames = c("Atherton",
+              "Cupertino",
+              "Los Altos",
+              "Los Altos Hills",
+              "Menlo Park",
+              "Mountain View",
+              "Palo Alto",
+              "Portola Valley",
+              "Redwood City",
+              "Redwood Shores",
+              "Sunnyvale",
+              "Woodside")
+
 shinyServer(function(input, output) {
 
   titlePanel("Median Sale Price and Price per Square Foot")
