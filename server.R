@@ -1,6 +1,7 @@
 # Load data
 load("webdata.data.RData")
-
+require(ggplot2)
+require(xlsx)
 ## Hard-coded
 nSheets = 12  # number of sheets (cities)
 nTypes = 3  # number of types of buildings
@@ -22,22 +23,48 @@ cityNames = c("Atherton",
 shinyServer(function(input, output) {
 
   titlePanel("Median Sale Price and Price per Square Foot")
+#   if (selectStat == "MSP") {
+#     output$dataPlot <- renderPlot({
+#         ggplot(
+#           data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+#           aes(
+#             x = year,
+#             y = msp,
+#             group = city,
+#             color = city
+#           )) +
+#           geom_point() +
+#           geom_line()
+#       })
+#     }
+#   else if (selectStat == "Ratio") {
+#     output$dataPlot <- renderPlot({
+#       ggplot(
+#         data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+#         aes(
+#           x = year,
+#           y = ratio,
+#           group = city,
+#           color = city
+#         )) +
+#         geom_point() +
+#         geom_line()
+# #     
+#               
+#     
+#   })}
   
-  output$dataPlot <- renderPlot({
-      # selectType = "SFR"
-      selectCity = c("SU", "PA", "MP", "PV")
-      ggplot(
-        data = subset(frame, frame[, "type"] == selectType & frame[, "city"] %in% selectCity),
-        aes(
-          x = year,
-          y = msp,
-          group = city,
-          color = city
-        )) +
-        geom_point() +
-        geom_line()
 
-              
-    
-  })
+      output$dataPlot <- renderPlot({
+          ggplot(
+            data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+            aes(
+              x = year,
+              y = msp,
+              group = city,
+              color = city
+            )) +
+            geom_point() +
+            geom_line()
+      })
 })
