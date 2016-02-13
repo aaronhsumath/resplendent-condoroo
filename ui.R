@@ -6,7 +6,7 @@ shinyUI(fluidPage(
       selectInput("city",
         "City:",
         choices = cityNames),
-      selectInput("type",
+      selectInput("selectType",
          "Property Type:",
          choices = typeNames),
       selectInput("stat",

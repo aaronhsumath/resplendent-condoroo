@@ -24,11 +24,20 @@ shinyServer(function(input, output) {
   titlePanel("Median Sale Price and Price per Square Foot")
   
   output$dataPlot <- renderPlot({
-    barplot(
-      # data[city, type, type, leaveblank]
-      data[input$city, input$type, input$stat,]
+      # selectType = "SFR"
+      selectCity = c("SU", "PA", "MP", "PV")
+      ggplot(
+        data = subset(frame, frame[, "type"] == selectType & frame[, "city"] %in% selectCity),
+        aes(
+          x = year,
+          y = msp,
+          group = city,
+          color = city
+        )) +
+        geom_point() +
+        geom_line()
 
               
-    )
+    
   })
 })
