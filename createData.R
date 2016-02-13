@@ -49,8 +49,21 @@ for (i in 1:nSheets) {  # loop through number of sheets
   }
 }
 
-## Save the resulting R object-----
+
+
+# Convert from multi-dimensional array to data frame
+frame <- adply(data,c(1,2,4)) 
+colnames(frame) <- c("city", "type", "year", "year2", "msp", "ratio")
+frame[, "year2"] <- NULL
+
+# Sort the data frame
+frame <- frame[order(frame[, "city"], frame[,"type"], frame[, "year"]) , ]
+
+
+
+## Save the resulting R objects-----
 save(data, file = "webdata.data.RData")
+save(frame, file = "webdata.frame.RData")
 
 
 
