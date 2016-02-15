@@ -22,40 +22,7 @@ cityNames = c("Atherton",
 
 shinyServer(function(input, output) {
 
-  titlePanel("Median Sale Price and Price per Square Foot")
-#   if (selectStat == "MSP") {
-#     output$dataPlot <- renderPlot({
-#         ggplot(
-#           data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
-#           aes(
-#             x = year,
-#             y = msp,
-#             group = city,
-#             color = city
-#           )) +
-#           geom_point() +
-#           geom_line()
-#       })
-#     }
-#   else if (selectStat == "Ratio") {
-#     output$dataPlot <- renderPlot({
-#       ggplot(
-#         data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
-#         aes(
-#           x = year,
-#           y = ratio,
-#           group = city,
-#           color = city
-#         )) +
-#         geom_point() +
-#         geom_line()
-# #     
-#               
-#     
-#   })}
-  
-
-      output$dataPlot <- renderPlot({
+      output$dataPlot1 <- renderPlot({
           ggplot(
             data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
             aes(
@@ -66,5 +33,18 @@ shinyServer(function(input, output) {
             )) +
             geom_point() +
             geom_line()
+      })
+      
+      output$dataPlot2 <- renderPlot({
+        ggplot(
+          data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+          aes(
+            x = year,
+            y = ratio,
+            group = city,
+            color = city
+          )) +
+          geom_point() +
+          geom_line()
       })
 })
