@@ -2,10 +2,15 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     
+    # Sidebar, where user selects options
     sidebarPanel(
+      
+      # Select which type of property we wish to see
       selectInput("selectType",
          "Property Type:",
          choices = typeNames),
+      
+      # Select which cities we wish to see
       checkboxGroupInput("selectCity", label = h3("Checkbox group"), 
                          choices = list(
                            "Atherton" = "AT",
@@ -21,14 +26,19 @@ shinyUI(fluidPage(
                            "Sunnyvale" = "SU",
                            "Woodside" = "WOD"
                            ),
-                         selected = 1),
-      hr()
+                         selected = 1)
     ),
-
+    
+    # Main panel, which displays requested output
     mainPanel(
+      
+      # Display the title
       titlePanel("Median Sale Price and Price per Square Foot"),
-      plotOutput("dataPlot1"),
-      plotOutput("dataPlot2")
+      
+      # Display the plot
+      plotOutput("dataPlot1")
     )
+    
   )
+  
 ))
