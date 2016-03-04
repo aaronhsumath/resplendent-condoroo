@@ -37,7 +37,8 @@ shinyUI(fluidPage(
       
       # Display the plot
       plotOutput("dataPlot1"),
-      plotOutput("dataPlot2")
+      plotOutput("dataPlot2"),
+      plotOutput("dataPlotCombined")
     )
     
   )

@@ -1,6 +1,8 @@
 # Load data
 load("webdata.data.RData")
-require(ggplot2)
+library(ggplot2)
+library(gridExtra)
+library(grid)
 
 # require(gridExtra)
 
@@ -61,8 +63,47 @@ shinyServer(function(input, output) {
     
   })
   
-  
-  
+  output$dataPlotCombined <- renderPlot({
+    
+    # Generate plot for MSP
+    p1 <- ggplot(
+      data = subset(frame, 
+                    frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+      aes(
+        x = year,
+        y = msp,
+        group = city,
+        color = city
+      )
+    ) +
+      geom_point() +
+      geom_line()
+    
+    # Generate plot for ratio
+    p2 <- ggplot(
+      data = subset(frame, 
+                    frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+      aes(
+        x = year,
+        y = ratio,
+        group = city,
+        color = city
+      )
+    ) +
+      geom_point() +
+      geom_line()
+    
+    # Convert plots into gtables
+    p1 <- ggplot_gtable(ggplot_build(p1))
+    p2 <- ggplot_gtable(ggplot_build(p2))
+    
+    maxWidth = unit.pmax(p1$widths[2:3], p2$widths[2:3])
+    
+    p1$widths[2:3] <- maxWidth
+    p2$widths[2:3] <- maxWidth
+    
+    grid.arrange(p1, p2)
+  })
   
 })  
   
