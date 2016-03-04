@@ -23,10 +23,11 @@ cityNames = c("Atherton",
               "Woodside")
 
 shinyServer(function(input, output) {
-#   plot1 <- reactive({
-#       plot1 <- 
+
         
   output$dataPlot1 <- renderPlot({
+    
+    # Plot for MSP
     ggplot(
       data = subset(frame, 
                     frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
@@ -39,36 +40,55 @@ shinyServer(function(input, output) {
     ) +
     geom_point() +
     geom_line()
+    
   })
+  
+  output$dataPlot2 <- renderPlot({
+    
+    # Plot for ratio
+    ggplot(
+      data = subset(frame, 
+                    frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+      aes(
+        x = year,
+        y = ratio,
+        group = city,
+        color = city
+      )
+    ) +
+    geom_point() +
+    geom_line()
+    
+  })
+  
+  
+  
+  
 })  
   
+
+
+
+
+
+
+
+
+# 
+# 
+# 
+# # Plot for PSRatio
+# ggplot(
+#   data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+#   aes(
+#     x = year,
+#     y = ratio,
+#     group = city,
+#     color = city
+#   )) +
+#   geom_point() +
+#   geom_line()
   
-  
-#         ggplot(
-#             data = subset(frame, 
-#                           frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
-#             aes(
-#               x = year,
-#               y = msp,
-#               group = city,
-#               color = city
-#             )) +
-#             geom_point() +
-#             geom_line()
-#   })
-#   plot2 <- reactive({
-#     
-#       plot2 <- ggplot(
-#           data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
-#           aes(
-#             x = year,
-#             y = ratio,
-#             group = city,
-#             color = city
-#           )) +
-#           geom_point() +
-#           geom_line()
-#   })
 #       plot1 <- ggplot_gtable(ggplot_build(plot1))
 #       plot2 <- ggplot_gtable(ggplot_build(plot2))
 #       
