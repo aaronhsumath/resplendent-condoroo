@@ -13,18 +13,18 @@ shinyUI(fluidPage(
       # Select which cities we wish to see
       checkboxGroupInput("selectCity", label = h3("Checkbox group"), 
                          choices = list(
-                           "Atherton" = "AT",
-                           "Cupertino" = "CU", 
-                           "Los Altos" = "LA",
-                           "Los Altos Hills" = "LAH",
-                           "Menlo Park" = "MP",
-                           "Mountain View" = "MV",
-                           "Palo Alto" = "PA",
-                           "Portola Valley" = "PV",
-                           "Redwood City" = "RC",
-                           "Redwood Shores" = "RS",
-                           "Sunnyvale" = "SU",
-                           "Woodside" = "WOD"
+                           "Atherton" = "Atherton",
+                           "Cupertino" = "Cupertino", 
+                           "Los Altos" = "Los Altos",
+                           "Los Altos Hills" = "Los Altos Hills",
+                           "Menlo Park" = "Menlo Park",
+                           "Mountain View" = "Mountain View",
+                           "Palo Alto" = "Palo Alto",
+                           "Portola Valley" = "Portola Valley",
+                           "Redwood City" = "Redwood City",
+                           "Redwood Shores" = "Redwood Shores",
+                           "Sunnyvale" = "Sunnyvale",
+                           "Woodside" = "Woodside"
                            ),
                          selected = 1)
     ),

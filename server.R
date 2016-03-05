@@ -1,5 +1,5 @@
 # Load data
-load("webdata.data.RData")
+load("data.RData")
 library(ggplot2)
 library(gridExtra)
 library(grid)
@@ -61,6 +61,7 @@ shinyServer(function(input, output) {
     ggtitle("Sale Price to List Price Ratio") +
     labs(y = "Sale Price to List Price Ratio",
          x = "Year") 
+
     # xlim(max(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)), min(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)))
     
     # Convert plots into gtables

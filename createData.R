@@ -1,7 +1,8 @@
 ## Initialize -----
 cat("\014")
-require(xlsx)
-setwd("C:/r/webdata")
+library(xlsx)
+library(plyr)
+setwd("C:/r/resplendent-kangaroo")
 
 ## Set xlsx data sheet variables
 nSheets = 12  # number of sheets (cities)
@@ -10,7 +11,7 @@ nStats = 3  # number of stats to read
 nYears = 13 # number of rows (years) to read
 
 ## Load xlsx data sheet -----
-dataPath = "webdata.data.xlsx"
+dataPath = "data.xlsx"
 
 ## Save names of the cities
 cityNames = names(getSheets(loadWorkbook(dataPath)))
@@ -62,8 +63,8 @@ frame <- frame[order(frame[, "city"], frame[,"type"], frame[, "year"]) , ]
 
 
 ## Save the resulting R objects-----
-save(data, file = "webdata.data.RData")
-save(frame, file = "webdata.frame.RData")
+save(data, file = "data.RData")
+save(frame, file = "frame.RData")
 
 
 
