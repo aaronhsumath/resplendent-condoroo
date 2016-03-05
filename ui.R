@@ -1,5 +1,6 @@
 shinyUI(fluidPage(
-
+  # Display the title
+  titlePanel("Interactive Market Statistics"),
   sidebarLayout(
     
     # Sidebar, where user selects options
@@ -7,11 +8,11 @@ shinyUI(fluidPage(
       
       # Select which type of property we wish to see
       selectInput("selectType",
-         "Property Type:",
+         "Property type:",
          choices = typeNames),
       
       # Select which cities we wish to see
-      checkboxGroupInput("selectCity", label = h3("Checkbox group"), 
+      checkboxGroupInput("selectCity", label = strong("Select cities:"), 
                          choices = list(
                            "Atherton" = "Atherton",
                            "Cupertino" = "Cupertino", 
@@ -26,17 +27,20 @@ shinyUI(fluidPage(
                            "Sunnyvale" = "Sunnyvale",
                            "Woodside" = "Woodside"
                            ),
-                         selected = 1)
-    ),
+                         selected = c("Palo Alto", "Los Altos", "Mountain View", "Sunnyvale")),
+    HTML("<br>"),
+      img(src = "logo.png", height = 99, width = 108),
+    
+    HTML("<br><br><em>Created by Aaron Hsu<br>Sunnyvale Specialist and Data Analyst<br>aaron@deleonrealty.com</em>")
+    
+      ),
     
     # Main panel, which displays requested output
     mainPanel(
       
-      # Display the title
-      titlePanel("Median Sale Price and Price per Square Foot"),
-      
       # Display the plot
       plotOutput("dataPlotCombined")
+      
     )
     
   )

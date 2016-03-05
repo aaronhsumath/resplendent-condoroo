@@ -9,3 +9,7 @@ plot2$widths[2:3] <- maxWidth
 
 # Arrange the grid  
 output$dataPlot1 <- grid.arrange(plot1, plot2, heights = c(3, 2))
+
+
+
+max(subset(frame, frame[, "type"] == "SFR" & frame[, "city"] %in% "Atherton")[, "msp"])

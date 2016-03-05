@@ -1,8 +1,10 @@
 # Load data
 load("data.RData")
+load("frame.RData")
 library(ggplot2)
 library(gridExtra)
 library(grid)
+library(scales)
 
 # require(gridExtra)
 
@@ -42,8 +44,11 @@ shinyServer(function(input, output) {
     geom_point() +
     geom_line() +
     ggtitle("Median Sale Price") +
-    labs(y = "Median Sale Price, dollars",
-         x = "Year")
+    labs(y = "Median Sale Price, dollars", x = "Year") +
+    scale_colour_discrete(name="") +
+    scale_y_continuous(labels = comma) 
+    # ylim(0, max(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)[, "msp"]))
+    
     
     # Generate plot for ratio
     p2 <- ggplot(
@@ -60,7 +65,10 @@ shinyServer(function(input, output) {
     geom_line() +
     ggtitle("Sale Price to List Price Ratio") +
     labs(y = "Sale Price to List Price Ratio",
-         x = "Year") 
+         x = "Year") +
+    scale_colour_discrete(name="") +
+    geom_abline(slope = 0, intercept = 1) +
+    ylim(0.85, 1.15)
 
     # xlim(max(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)), min(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)))
     

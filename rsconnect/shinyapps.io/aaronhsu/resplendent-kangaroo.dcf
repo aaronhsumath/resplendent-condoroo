@@ -2,8 +2,8 @@ name: resplendent-kangaroo
 account: aaronhsu
 server: shinyapps.io
 appId: 83304
-bundleId: 371976
+bundleId: 387954
 url: https://aaronhsu.shinyapps.io/resplendent-kangaroo/
-when: 1455338863.57611
+when: 1457142163.76947
 asMultiple: FALSE
 asStatic: FALSE
