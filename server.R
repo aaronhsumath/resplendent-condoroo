@@ -26,43 +26,6 @@ cityNames = c("Atherton",
 
 shinyServer(function(input, output) {
 
-        
-  output$dataPlot1 <- renderPlot({
-    
-    # Plot for MSP
-    ggplot(
-      data = subset(frame, 
-                    frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
-      aes(
-        x = year,
-        y = msp,
-        group = city,
-        color = city
-      )
-    ) +
-    geom_point() +
-    geom_line()
-    
-  })
-  
-  output$dataPlot2 <- renderPlot({
-    
-    # Plot for ratio
-    ggplot(
-      data = subset(frame, 
-                    frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
-      aes(
-        x = year,
-        y = ratio,
-        group = city,
-        color = city
-      )
-    ) +
-    geom_point() +
-    geom_line()
-    
-  })
-  
   output$dataPlotCombined <- renderPlot({
     
     # Generate plot for MSP
@@ -76,8 +39,11 @@ shinyServer(function(input, output) {
         color = city
       )
     ) +
-      geom_point() +
-      geom_line()
+    geom_point() +
+    geom_line() +
+    ggtitle("Median Sale Price") +
+    labs(y = "Median Sale Price, dollars",
+         x = "Year")
     
     # Generate plot for ratio
     p2 <- ggplot(
@@ -90,65 +56,26 @@ shinyServer(function(input, output) {
         color = city
       )
     ) +
-      geom_point() +
-      geom_line()
+    geom_point() +
+    geom_line() +
+    ggtitle("Sale Price to List Price Ratio") +
+    labs(y = "Sale Price to List Price Ratio",
+         x = "Year") 
+    # xlim(max(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)), min(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)))
     
     # Convert plots into gtables
     p1 <- ggplot_gtable(ggplot_build(p1))
     p2 <- ggplot_gtable(ggplot_build(p2))
     
+    # Calculate max widths of the plots
     maxWidth = unit.pmax(p1$widths[2:3], p2$widths[2:3])
     
+    # Set the widths to be the same
     p1$widths[2:3] <- maxWidth
     p2$widths[2:3] <- maxWidth
     
-    grid.arrange(p1, p2)
-  })
+    # Draw the plots
+    grid.arrange(p1, p2, heights = c(10,6))
+  }, height = 900)
   
-})  
-  
-
-
-
-
-
-
-
-
-# 
-# 
-# 
-# # Plot for PSRatio
-# ggplot(
-#   data = subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
-#   aes(
-#     x = year,
-#     y = ratio,
-#     group = city,
-#     color = city
-#   )) +
-#   geom_point() +
-#   geom_line()
-  
-#       plot1 <- ggplot_gtable(ggplot_build(plot1))
-#       plot2 <- ggplot_gtable(ggplot_build(plot2))
-#       
-#       # Calculate maximum widths of plots
-#       maxWidth = unit.pmax(plot1$widths[2:3], plot2$widths[2:3])
-#       
-#       
-#       # Set plot widths to maxWidth
-#       plot1$widths[2:3] <- maxWidth
-#       plot2$widths[2:3] <- maxWidth
-#       
-      # Arrange the grid  
-#       output$dataPlot1 <- renderPlot({
-#         
-#      plot1
-        # grid.arrange(plot1, plot2, heights = c(3, 2))
-#       
-#       
-#       })
-# 
-#       })
-#       
+})

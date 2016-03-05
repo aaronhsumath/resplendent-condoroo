@@ -36,8 +36,6 @@ shinyUI(fluidPage(
       titlePanel("Median Sale Price and Price per Square Foot"),
       
       # Display the plot
-      plotOutput("dataPlot1"),
-      plotOutput("dataPlot2"),
       plotOutput("dataPlotCombined")
     )
     
