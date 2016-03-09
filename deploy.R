@@ -1,4 +1,4 @@
 wd <- getwd()
 setwd("C:/r/")
-deployApp("webdata")
+deployApp("resplendent-kangaroo")
 setwd(wd)
