@@ -15,7 +15,9 @@ shinyUI(fluidPage(
       checkboxGroupInput("selectCity", label = strong("Select cities:"), 
                          choices = list(
                            "Atherton" = "Atherton",
+                           "Burlingame" = "Burlingame",
                            "Cupertino" = "Cupertino", 
+                           "Hillsborough" = "Hillsborough",
                            "Los Altos" = "Los Altos",
                            "Los Altos Hills" = "Los Altos Hills",
                            "Menlo Park" = "Menlo Park",
@@ -24,6 +26,7 @@ shinyUI(fluidPage(
                            "Portola Valley" = "Portola Valley",
                            "Redwood City" = "Redwood City",
                            "Redwood Shores" = "Redwood Shores",
+                           "San Mateo" = "San Mateo",
                            "Sunnyvale" = "Sunnyvale",
                            "Woodside" = "Woodside"
                            ),

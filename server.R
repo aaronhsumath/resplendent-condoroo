@@ -1,39 +1,22 @@
-# Load data
-load("data.RData")
-load("frame.RData")
+# Load required libraries
 library(ggplot2)
 library(gridExtra)
 library(grid)
 library(scales)
 
-# require(gridExtra)
+# Load data
+load("kangaroo.RData")
 
-## Hard-coded constants
-nSheets = 12  # number of sheets (cities)
-nTypes = 3  # number of types of buildings
-nStats = 3  # number of stats to read
-nYears = 13 # number of rows (years) to read
-cityNames = c("Atherton",
-              "Cupertino",
-              "Los Altos",
-              "Los Altos Hills",
-              "Menlo Park",
-              "Mountain View",
-              "Palo Alto",
-              "Portola Valley",
-              "Redwood City",
-              "Redwood Shores",
-              "Sunnyvale",
-              "Woodside")
-
+# Shiny server script
 shinyServer(function(input, output) {
 
+  # Define output object dataPlotCombined
   output$dataPlotCombined <- renderPlot({
     
     # Generate plot for MSP
     p1 <- ggplot(
-      data = subset(frame, 
-                    frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+      data = subset(kangaroo, 
+                    kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity),
       aes(
         x = year,
         y = msp,
@@ -47,13 +30,13 @@ shinyServer(function(input, output) {
     labs(y = "Median Sale Price, dollars", x = "Year") +
     scale_colour_discrete(name="") +
     scale_y_continuous(labels = comma) 
-    # ylim(0, max(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)[, "msp"]))
+    # ylim(0, max(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)[, "msp"]))
     
     
     # Generate plot for ratio
     p2 <- ggplot(
-      data = subset(frame, 
-                    frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity),
+      data = subset(kangaroo, 
+                    kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity),
       aes(
         x = year,
         y = ratio,
@@ -70,7 +53,7 @@ shinyServer(function(input, output) {
     geom_abline(slope = 0, intercept = 1) +
     ylim(0.85, 1.15)
 
-    # xlim(max(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)), min(subset(frame, frame[, "type"] == input$selectType & frame[, "city"] %in% input$selectCity)))
+    # xlim(max(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)), min(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)))
     
     # Convert plots into gtables
     p1 <- ggplot_gtable(ggplot_build(p1))
@@ -85,6 +68,7 @@ shinyServer(function(input, output) {
     
     # Draw the plots
     grid.arrange(p1, p2, heights = c(10,6))
+    
   }, height = 900)
   
 })

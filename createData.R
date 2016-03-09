@@ -14,7 +14,22 @@ nYears = 14 # number of rows (years) to read
 dataPath = "kangaroo.data.xlsx"
 
 ## Save names of the cities
-cityNames = names(getSheets(loadWorkbook(dataPath)))
+# cityNames = names(getSheets(loadWorkbook(dataPath)))
+cityNames = c("Atherton",
+              "Burlingame",
+              "Cupertino",
+              "Hillsborough",
+              "Los Altos",
+              "Los Altos Hills",
+              "Menlo Park",
+              "Mountain View",
+              "Palo Alto",
+              "Portola Valley",
+              "Redwood City",
+              "Redwood Shores",
+              "San Mateo",
+              "Sunnyvale",
+              "Woodside")
 
 ## Define other names
 typeNames = c("SFR", "Condo", "Townhome")
