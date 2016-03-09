@@ -5,13 +5,13 @@ library(plyr)
 setwd("C:/r/resplendent-kangaroo")
 
 ## Set xlsx data sheet variables
-nSheets = 12  # number of sheets (cities)
+nSheets = 15  # number of sheets (cities)
 nTypes = 3  # number of types of buildings
 nStats = 3  # number of stats to read
-nYears = 13 # number of rows (years) to read
+nYears = 14 # number of rows (years) to read
 
 ## Load xlsx data sheet -----
-dataPath = "data.xlsx"
+dataPath = "kangaroo.data.xlsx"
 
 ## Save names of the cities
 cityNames = names(getSheets(loadWorkbook(dataPath)))
@@ -19,7 +19,7 @@ cityNames = names(getSheets(loadWorkbook(dataPath)))
 ## Define other names
 typeNames = c("SFR", "Condo", "Townhome")
 statNames = c("Year","MSP","Ratio")
-yearNames = unlist(2003:2015)
+yearNames = unlist(2002:2015)
 
 ## Populate array of data from xlsx file
 data <- array(data = 1:(nSheets*nTypes*nStats*nYears), 
@@ -30,64 +30,37 @@ data <- array(data = 1:(nSheets*nTypes*nStats*nYears),
                 statNames,
                 yearNames
              ))
-#               dimnames = as.list(cityNames, )
-#               dimnames = as.list(c("city", "type", "stat", "year")))
+
 for (i in 1:nSheets) {  # loop through number of sheets
   for (j in 1:nTypes) {
     for (k in 1:nStats) {
+      cat("Currently processing City", i, ", Type ", j, ", Stat ", k, " \n")
       toPad = read.xlsx(file = dataPath,
                         sheetIndex = i,
                         rowIndex = 2:(nYears + 1),
                         colIndex = 4*(j-1) + 1 + (k - 1),
                         header = FALSE
                         )[[1]]
-#                                 # out = nYears)
-#       bigger = toPad
-#       bigger[(length(toPad)+1):nYears] <- NA
+      cat(toPad, "\n")
       data[i,j,k, ] = toPad
-      cat("Currently processing City", i, ", Type ", j, ", Stat ", k, " \n")
     }
   }
 }
 
-
-
 # Convert from multi-dimensional array to data frame
-frame <- adply(data,c(1,2,4)) 
-colnames(frame) <- c("city", "type", "year", "year2", "msp", "ratio")
-frame[, "year2"] <- NULL
+kangaroo <- adply(data,c(1,2,4)) 
+colnames(kangaroo) <- c("city", "type", "year", "year2", "msp", "ratio")
+kangaroo[, "year2"] <- NULL
 
 # Sort the data frame
-frame <- frame[order(frame[, "city"], frame[,"type"], frame[, "year"]) , ]
+kangaroo <- kangaroo[order(kangaroo[, "city"], kangaroo[,"type"], kangaroo[, "year"]) , ]
 
+# Remove missing values
+kangaroo[kangaroo == 94306] <- NA
 
+## Save the resulting R object-----
+save(kangaroo, file = "kangaroo.RData")
 
-## Save the resulting R objects-----
-save(data, file = "data.RData")
-save(frame, file = "frame.RData")
-
-
-
-# ## Ignore following -----
-# read.xlsx
-# data[10,3,2,] <- c(1:13)
-# data[10,3,2,] <- c
-# 
-# 
-# stuff = array(dim = c(13,2))
-# stuff[,2] = c
-# 
-# 
-# 
-# c = read.xlsx(file = dataPath,
-#               sheetIndex = i,
-#               rowIndex = 2:(nYears + 1),
-#               colIndex = 3*(j-1) + 1
-# )[[1]]
-# 
-# length(c)
-# 
-# read.xlsx(dataPath,4)
-
-
-
+## View the data frame
+cat("All done! Viewing kangaroo data frame...")
+View(kangaroo)
