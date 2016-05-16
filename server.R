@@ -29,6 +29,7 @@ shinyServer(function(input, output) {
     ggtitle("Median Sale Price") +
     labs(y = "Median Sale Price, dollars", x = "Year") +
     scale_colour_discrete(name="") +
+    theme(legend.position = "bottom") +
     scale_y_continuous(labels = comma) 
     # ylim(0, max(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)[, "msp"]))
     
@@ -50,6 +51,7 @@ shinyServer(function(input, output) {
     labs(y = "Sale Price to List Price Ratio",
          x = "Year") +
     scale_colour_discrete(name="") +
+    theme(legend.position = "bottom") +
     geom_abline(slope = 0, intercept = 1) +
     ylim(0.85, 1.15)
 

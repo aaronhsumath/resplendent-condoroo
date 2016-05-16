@@ -31,12 +31,12 @@ shinyUI(fluidPage(
                            "Woodside" = "Woodside"
                            ),
                          selected = c("Palo Alto", "Los Altos", "Mountain View", "Sunnyvale")),
-    HTML("<br>"),
-      img(src = "logo.png", height = 99, width = 108),
+    #HTML("<br>"),
+      #img(src = "logo.png", height = 99, width = 108),
     
-    HTML("<br><br><em>Created by Aaron Hsu<br>Sunnyvale Specialist and Data Analyst<br>aaron@deleonrealty.com</em>")
+    #HTML("<br><br><em>Created by Aaron Hsu<br>Sunnyvale Specialist and Data Analyst<br>aaron@deleonrealty.com</em>"),
     
-      ),
+       width = 3),
     
     # Main panel, which displays requested output
     mainPanel(
