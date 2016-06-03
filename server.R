@@ -1,3 +1,6 @@
+# Developer: Aaron Hsu (aaronhsu.re[at]removethis.gmail.com)
+# Date: June 2016
+
 # Load required libraries
 library(ggplot2)
 library(gridExtra)
@@ -31,6 +34,7 @@ shinyServer(function(input, output) {
     scale_colour_discrete(name="") +
     theme(legend.position = "bottom", axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.3)) +
     scale_y_continuous(labels = comma) 
+    # Developer: Aaron Hsu (aaronhsu.re[at]removethis.gmail.com)
     # ylim(0, max(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)[, "msp"]))
     
     
@@ -55,7 +59,7 @@ shinyServer(function(input, output) {
     geom_abline(slope = 0, intercept = 1) +
     ylim(0.85, 1.15)
 
-    # xlim(max(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)), min(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)))
+    # xlim(max(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] # Developer: Aaron Hsu (aaronhsu.re[at]removethis.gmail.com) # %in% input$selectCity)), min(subset(kangaroo, kangaroo[, "type"] == input$selectType & kangaroo[, "city"] %in% input$selectCity)))
     
     # Convert plots into gtables
     p1 <- ggplot_gtable(ggplot_build(p1))

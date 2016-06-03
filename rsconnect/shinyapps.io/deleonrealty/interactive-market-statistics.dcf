@@ -2,8 +2,8 @@ name: interactive-market-statistics
 account: deleonrealty
 server: shinyapps.io
 appId: 94253
-bundleId: 453504
+bundleId: 471087
 url: https://deleonrealty.shinyapps.io/interactive-market-statistics/
-when: 1463434741.61889
+when: 1464992919.24784
 asMultiple: FALSE
 asStatic: FALSE

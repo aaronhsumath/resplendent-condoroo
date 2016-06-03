@@ -1,3 +1,6 @@
+# Developer: Aaron Hsu (aaronhsu.re[at]removethis.gmail.com)
+# Date: June 2016
+
 ## Initialize -----
 cat("\014")
 library(xlsx)
@@ -56,6 +59,8 @@ for (i in 1:nSheets) {  # loop through number of sheets
                         colIndex = 4*(j-1) + 1 + (k - 1),
                         header = FALSE
                         )[[1]]
+      # Developer: Aaron Hsu (aaronhsu.re[at]removethis.gmail.com)
+      # Date: June 2016
       cat(toPad, "\n")
       data[i,j,k, ] = toPad
     }
