@@ -1,6 +1,9 @@
+# Developer: Aaron Hsu (aaronhsu.re[at]removethis.gmail.com)
+# Date: June 2016
+
 shinyUI(fluidPage(
   # Display the title
-  titlePanel("Interactive Market Statistics"),
+  # titlePanel("Interactive Market Statistics"),
   sidebarLayout(
     
     # Sidebar, where user selects options
