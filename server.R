@@ -122,6 +122,6 @@ shinyServer(function(input, output) {
     # Draw the plots
     grid.arrange(p1, p2, p3, p4, heights = c(10, 6, 8, 6))
     
-  }, height = 900)
+  }, height = 1600)
   
 })
