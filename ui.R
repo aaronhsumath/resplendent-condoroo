@@ -38,6 +38,7 @@ shinyUI(fluidPage(
       #img(src = "logo.png", height = 99, width = 108),
     
     #HTML("<br><br><em>Created by Aaron Hsu<br>Sunnyvale Specialist and Data Analyst<br>aaron@deleonrealty.com</em>"),
+    HTML("<br><br><em><font color=F5F5F5><font size = 1>Created by Aaron Hsu 2016</font></font></em>"),
     
        width = 3),
     

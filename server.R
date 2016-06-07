@@ -79,7 +79,9 @@ shinyServer(function(input, output) {
       labs(y = "Price per Square Foot",
            x = "Year") +
       scale_colour_discrete(name="") +
-      theme(legend.position = "bottom", axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.3)) 
+      theme(legend.position = "bottom", axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.3)) +
+      scale_y_continuous(labels = comma) 
+    
 
     
     
@@ -120,7 +122,7 @@ shinyServer(function(input, output) {
     p4$widths[2:3] <- maxWidth
     
     # Draw the plots
-    grid.arrange(p1, p2, p3, p4, heights = c(10, 6, 8, 6))
+    grid.arrange(p1, p2, p3, p4, heights = c(10, 6, 6, 5))
     
   }, height = 1600)
   
