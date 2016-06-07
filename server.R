@@ -122,7 +122,7 @@ shinyServer(function(input, output) {
     p4$widths[2:3] <- maxWidth
     
     # Draw the plots
-    grid.arrange(p1, p2, p3, p4, heights = c(10, 6, 6, 5))
+    grid.arrange(p1, p2, p3, p4, heights = c(10, 8, 8, 7))
     
   }, height = 1600)
   
