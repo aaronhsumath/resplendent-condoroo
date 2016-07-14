@@ -12,28 +12,29 @@ shinyUI(fluidPage(
       # Select which type of property we wish to see
       selectInput("selectType",
          "Property type:",
-         choices = typeNames),
+         choices= c("Condo", "Townhome") # Took out SFR
+),
       
       # Select which cities we wish to see
       checkboxGroupInput("selectCity", label = strong("Select cities:"), 
                          choices = list(
-                           "Atherton" = "Atherton",
+                           # "Atherton" = "Atherton",
                            "Burlingame" = "Burlingame",
                            "Cupertino" = "Cupertino", 
-                           "Hillsborough" = "Hillsborough",
+                           # "Hillsborough" = "Hillsborough",
                            "Los Altos" = "Los Altos",
-                           "Los Altos Hills" = "Los Altos Hills",
+                           # "Los Altos Hills" = "Los Altos Hills",
                            "Menlo Park" = "Menlo Park",
                            "Mountain View" = "Mountain View",
                            "Palo Alto" = "Palo Alto",
-                           "Portola Valley" = "Portola Valley",
+                           # "Portola Valley" = "Portola Valley",
                            "Redwood City" = "Redwood City",
                            "Redwood Shores" = "Redwood Shores",
                            "San Mateo" = "San Mateo",
-                           "Sunnyvale" = "Sunnyvale",
-                           "Woodside" = "Woodside"
+                           "Sunnyvale" = "Sunnyvale"
+                           # "Woodside" = "Woodside"
                            ),
-                         selected = c("Palo Alto", "Los Altos", "Mountain View", "Sunnyvale")),
+                         selected = c("Palo Alto", "Los Altos", "Mountain View", "Cupertino")),
     #HTML("<br>"),
       #img(src = "logo.png", height = 99, width = 108),
     
